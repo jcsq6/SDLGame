@@ -47,7 +47,7 @@ int main(){
 
         rgb = map.getPixel(mouse.x(), mouse.y());
 
-        cout << rgb[0] << ", " << rgb[1] << ", " << rgb[2] << " : y = " << mouse.y() << endl;
+        cout << rgb[0] << ", " << rgb[1] << ", " << rgb[2] << ", " << rgb[3] <<  " : y = " << mouse.y() << endl;
 
         cout << SDL_GetError() << endl;
         SDL_Delay(50);

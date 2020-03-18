@@ -46,45 +46,28 @@ void texture::draw(int x, int y, SDL_RendererFlip flip){
 }
 
 int* texture::getPixel(int x, int y){
-	static int Color[4];
-	SDL_PixelFormat *fmt;
-	Uint32 temp, pixel;
-	Uint32 *pixels = (Uint32 *)Surface->pixels;
-	Uint8 red, green, blue, alpha;
+    static int Color[4];
+    SDL_PixelFormat *fmt;
+    Uint8 *pixels = (Uint8 *)Surface->pixels;
+    Uint8 red, green, blue;
 
-	fmt = Surface->format;
-	SDL_LockSurface(Surface);
-	pixel = pixels[(y * Surface->w) + x];
-	SDL_UnlockSurface(Surface);
+    fmt = Surface->format;
+    SDL_LockSurface(Surface);
 
-	/* Get Red component */
-	temp = pixel & fmt->Rmask;  /* Isolate red component */
-	temp = temp >> fmt->Rshift; /* Shift it down to 8-bit */
-	temp = temp << fmt->Rloss;  /* Expand to a full 8-bit number */
-	red = (Uint8)temp;
+    red   = pixels[(y * Surface->w) + x    ];
+    green = pixels[(y * Surface->w) + x + 1];
+    blue  = pixels[(y * Surface->w) + x + 2];
 
-	/* Get Green component */
-	temp = pixel & fmt->Gmask;  /* Isolate green component */
-	temp = temp >> fmt->Gshift; /* Shift it down to 8-bit */
-	temp = temp << fmt->Gloss;  /* Expand to a full 8-bit number */
-	green = (Uint8)temp;
+    SDL_UnlockSurface(Surface);
 
-	/* Get Blue component */
-	temp = pixel & fmt->Bmask;  /* Isolate blue component */
-	temp = temp >> fmt->Bshift; /* Shift it down to 8-bit */
-	temp = temp << fmt->Bloss;  /* Expand to a full 8-bit number */
-	blue = (Uint8)temp;
+    std::cout << "rmask " << fmt->Rmask << std::endl;
+    std::cout << "rshift " << fmt->Rshift << std::endl;
+    std::cout << "rloss " << fmt->Rloss << std::endl;
 
-	/* Get Alpha component */
-	temp = pixel & fmt->Amask;  /* Isolate alpha component */
-	temp = temp >> fmt->Ashift; /* Shift it down to 8-bit */
-	temp = temp << fmt->Aloss;  /* Expand to a full 8-bit number */
-	alpha = (Uint8)temp;
-
-	Color[0] = red;
-	Color[1] = green;
-	Color[2] = blue;
-	Color[3] = alpha;
+    Color[0] = red;
+    Color[1] = green;
+    Color[2] = blue;
+    Color[3] = 0xff;
 
 	//printf("Pixel Color -> R: %d,  G: %d,  B: %d,  A: %d\n", red, green, blue, alpha);
 
