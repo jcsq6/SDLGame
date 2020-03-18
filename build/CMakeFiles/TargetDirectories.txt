@@ -1,0 +1,3 @@
+C:/C++Dev/SDLDEV/SDLGame/build/CMakeFiles/WalkingGame.dir
+C:/C++Dev/SDLDEV/SDLGame/build/CMakeFiles/ALL_BUILD.dir
+C:/C++Dev/SDLDEV/SDLGame/build/CMakeFiles/ZERO_CHECK.dir
